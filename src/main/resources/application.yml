@@ -1,0 +1,25 @@
+server:
+  servlet:
+    context-path: /restaurant
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:6000/myschema?createDatabaseIfNotExist=true
+    username: root
+    password: 123
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  main:
+    banner-mode: "off"
+  liquibase:
+    change-log: classpath:changelog/db.changelog-dev.yml
+    default-schema: myschema
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
+
