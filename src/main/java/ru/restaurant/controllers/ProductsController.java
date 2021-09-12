@@ -23,18 +23,7 @@ public class ProductsController {
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<Product> products() {
         log.info("Get products");
-        List<Product> products = new ArrayList<>();
-        products.add(Product.builder()
-                .id(1)
-                .name("Ice cream")
-                .cost(100)
-                .build());
-        products.add(Product.builder()
-                .id(2)
-                .name("Pasta")
-                .cost(120)
-                .build());
-        return products;
+        return productService.getProducts();
     }
 
     @PostMapping(produces = APPLICATION_JSON_VALUE)

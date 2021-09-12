@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import ru.restaurant.db.Product;
 import ru.restaurant.db.repositories.ProductRepository;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -15,5 +17,9 @@ public class ProductService {
 
     public Product createProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    public List<Product> getProducts() {
+        return productRepository.findAll();
     }
 }
