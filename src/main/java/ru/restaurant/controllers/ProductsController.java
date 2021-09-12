@@ -30,14 +30,14 @@ public class ProductsController {
                 .cost(100)
                 .build());
         products.add(Product.builder()
-                .id(1)
+                .id(2)
                 .name("Pasta")
                 .cost(120)
                 .build());
         return products;
     }
 
-    @PostMapping(value = "/create", produces = APPLICATION_JSON_VALUE)
+    @PostMapping(produces = APPLICATION_JSON_VALUE)
     public Product createProduct(@Valid @RequestBody Product product) {
         log.warn("Create product - {}", product);
         return productService.createProduct(product);

@@ -8,14 +8,15 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "myschema", name = "products")
-public class Product {
+@Table(schema = "myschema", name = "meals")
+public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,8 +27,8 @@ public class Product {
     private String name;
 
     @NotNull
-    private Integer cost;
+    private String cost;
 
 //    @ManyToMany
-//    private List<Meal> meals;
+//    private List<Product> products;
 }

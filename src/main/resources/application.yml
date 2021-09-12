@@ -1,15 +1,16 @@
 server:
   servlet:
     context-path: /restaurant
-  port: 9090
 
 spring:
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:6000/myschema?createDatabaseIfNotExist=true
     username: root
     password: 123
   jpa:
+    hibernate:
+      ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
