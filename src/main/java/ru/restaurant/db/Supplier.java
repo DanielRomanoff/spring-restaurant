@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,8 +15,8 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "myschema", name = "products")
-public class Product {
+@Table(schema = "myschema", name = "suppliers")
+public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,11 +27,10 @@ public class Product {
     private String name;
 
     @NotNull
-    private Integer cost;
+    @Size(max = 45)
+    private String address;
 
     @NotNull
-    private Integer weight;
-
-//    @ManyToMany
-//    private List<Meal> meals;
+    @Email
+    private String email;
 }

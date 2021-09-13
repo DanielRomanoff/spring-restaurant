@@ -14,8 +14,8 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "myschema", name = "products")
-public class Product {
+@Table(schema = "myschema", name = "persons")
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,14 +23,14 @@ public class Product {
 
     @NotNull
     @Size(max = 45)
-    private String name;
+    private String role;
 
     @NotNull
-    private Integer cost;
+    @Size(max = 45)
+    private String login;
 
     @NotNull
-    private Integer weight;
-
-//    @ManyToMany
-//    private List<Meal> meals;
+    @Size(max = 45)
+    private String password;
 }
+

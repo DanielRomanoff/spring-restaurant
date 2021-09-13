@@ -7,30 +7,20 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "myschema", name = "products")
-public class Product {
+@Table(schema = "myschema", name = "orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
     @NotNull
-    @Size(max = 45)
-    private String name;
-
-    @NotNull
-    private Integer cost;
-
-    @NotNull
-    private Integer weight;
-
-//    @ManyToMany
-//    private List<Meal> meals;
+    private Date dateAndTime;
 }
