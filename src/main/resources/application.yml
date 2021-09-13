@@ -11,11 +11,10 @@ spring:
     password: 123
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
   main:
     banner-mode: "off"
-  liquibase:
-    change-log: classpath:changelog/db.changelog-dev.yml
-    default-schema: myschema
   jackson:
     deserialization:
       fail-on-unknown-properties: true

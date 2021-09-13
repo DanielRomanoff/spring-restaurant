@@ -24,7 +24,7 @@ public class Product {
 
     @NotNull
     @Size(max = 30)
-    private String cost;
+    private Integer cost;
 
     @NotNull
     @Size(max = 100)

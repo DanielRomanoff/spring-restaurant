@@ -27,12 +27,12 @@ public class ProductsController {
         products.add(Product.builder()
                 .id(1)
                 .name("Ice cream")
-                .cost("100")
+                .cost(100)
                 .build());
         products.add(Product.builder()
                 .id(1)
                 .name("Pasta")
-                .cost("120")
+                .cost(120)
                 .build());
         return products;
     }

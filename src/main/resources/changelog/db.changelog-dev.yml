@@ -1,3 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: changelog/changes/V1.0__init.sql
