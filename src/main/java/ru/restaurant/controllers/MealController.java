@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.restaurant.db.Meal;
+import ru.restaurant.db.Product;
 import ru.restaurant.services.MealService;
 
 import javax.validation.Valid;
@@ -26,8 +27,8 @@ public class MealController {
     }
 
     @PostMapping(produces = APPLICATION_JSON_VALUE)
-    public Meal createMeal(@Valid @RequestBody Meal meal) {
-        log.info("Create meal - {}", meal);
-        return mealService.createMeal(meal);
+    public Meal createMeal(@Valid @RequestBody List<Product> products, @Valid @RequestBody Meal meal) {
+        log.info("Create meal with products - {}", products);
+        return mealService.createMeal(products, meal);
     }
 }

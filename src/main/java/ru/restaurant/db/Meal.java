@@ -29,6 +29,6 @@ public class Meal {
     @NotNull
     private String cost;
 
-//    @ManyToMany
-//    private List<Product> products;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Product> products;
 }
