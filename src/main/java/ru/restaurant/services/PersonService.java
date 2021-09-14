@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonService {
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     public Person createPerson(Person person) {
         return personRepository.save(person);

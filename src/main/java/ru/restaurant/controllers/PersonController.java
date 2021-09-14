@@ -17,7 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/api/persons")
 public class PersonController {
 
-    private PersonService personService;
+    private final PersonService personService;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<Person> persons() {

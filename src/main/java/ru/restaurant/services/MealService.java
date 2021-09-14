@@ -11,7 +11,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MealSercive {
+public class MealService {
 
     private final MealRepository mealRepository;
 
