@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -29,6 +30,9 @@ public class Meal {
     @NotNull
     private String cost;
 
-//    @ManyToMany
-//    private List<Product> products;
+    @ManyToMany
+    private List<Product> products;
+
+    @ManyToMany
+    private List<Order> orders;
 }

@@ -3,6 +3,7 @@ package ru.restaurant.controllers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import ru.restaurant.db.Order;
 import ru.restaurant.db.Person;
 import ru.restaurant.services.PersonService;
 
@@ -29,5 +30,11 @@ public class PersonController {
     public Person createPerson(@Valid @RequestBody Person person) {
         log.info("Create person = {}", person);
         return personService.createPerson(person);
+    }
+
+    @DeleteMapping(produces = APPLICATION_JSON_VALUE)
+    public void deletePerson(@RequestBody Person person) {
+        log.info("Delete person = {}", person);
+        personService.deletePerson(person);
     }
 }

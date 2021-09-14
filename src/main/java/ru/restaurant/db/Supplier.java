@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
 @Builder
@@ -33,4 +34,7 @@ public class Supplier {
     @NotNull
     @Email
     private String email;
+
+    @ManyToMany
+    private List<Product> products;
 }

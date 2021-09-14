@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -23,4 +24,8 @@ public class Order {
 
     @NotNull
     private Date dateAndTime;
+
+    @ManyToMany
+    @NotNull
+    private List<Meal> meals;
 }

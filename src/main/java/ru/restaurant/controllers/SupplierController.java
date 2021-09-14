@@ -30,4 +30,10 @@ public class SupplierController {
         log.info("Create supplier - {}", supplier);
         return supplierService.createSupplier(supplier);
     }
+
+    @DeleteMapping(produces = APPLICATION_JSON_VALUE)
+    public void deleteSupplier(@RequestBody Supplier supplier) {
+        log.info("Delete person = {}", supplier);
+        supplierService.deleteSupplier(supplier);
+    }
 }

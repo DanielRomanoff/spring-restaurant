@@ -30,4 +30,10 @@ public class MealController {
         log.info("Create meal - {}", meal);
         return mealService.createMeal(meal);
     }
+
+    @DeleteMapping(produces = APPLICATION_JSON_VALUE)
+    public void deleteMeal(@RequestBody Meal meal) {
+        log.info("Delete meal - {}", meal);
+        mealService.deleteMeal(meal);
+    }
 }
