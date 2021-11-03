@@ -1,4 +1,4 @@
-package ru.restaurant.db;
+package ru.restaurant.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(schema = "myschema", name = "meals")
-public class Meal {
+public class Dish implements RestaurantEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -29,6 +29,8 @@ public class Meal {
     @NotNull
     private String cost;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Product> products;
+
+    private Boolean menu;
 }

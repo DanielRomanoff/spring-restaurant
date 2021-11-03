@@ -1,4 +1,4 @@
-package ru.restaurant.db;
+package ru.restaurant.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,8 +14,8 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "myschema", name = "persons")
-public class Person {
+@Table(schema = "myschema", name = "products")
+public class Product implements RestaurantEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,14 +23,7 @@ public class Person {
 
     @NotNull
     @Size(max = 45)
-    private String role;
+    private String name;
 
-    @NotNull
-    @Size(max = 45)
-    private String login;
-
-    @NotNull
-    @Size(max = 45)
-    private String password;
+    private Integer count;
 }
-

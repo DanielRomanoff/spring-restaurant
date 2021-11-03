@@ -2,10 +2,9 @@ package ru.restaurant.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
-import ru.restaurant.db.Order;
-import ru.restaurant.db.repositories.OrderRepository;
+import ru.restaurant.dao.Order;
+import ru.restaurant.enums.Status;
 
 import java.util.List;
 
@@ -13,13 +12,20 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OrderService {
-    private final OrderRepository orderRepository;
 
     public Order createOrder(Order order) {
-        return orderRepository.save(order);
+        return null;
     }
 
     public List<Order> getOrders() {
-        return orderRepository.findAll();
+        return null;
+    }
+
+    public Double getAmount() {
+        return null;
+    }
+
+    public Order changeStatus(Status status) {
+        return null;
     }
 }

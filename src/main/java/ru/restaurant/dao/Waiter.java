@@ -1,4 +1,4 @@
-package ru.restaurant.db;
+package ru.restaurant.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,21 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "myschema", name = "orders")
-public class Order {
+@Table(schema = "myschema", name = "waiter")
+public class Waiter implements RestaurantEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
-    @NotNull
-    private Date dateAndTime;
+    private String name;
 }
