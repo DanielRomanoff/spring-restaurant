@@ -1,21 +1,19 @@
-package ru.restaurant.dao;
+package ru.restaurant.db.dao;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "myschema", name = "meals")
+@Getter
+@Setter
+@Table(schema = "restaurant", name = "dishes")
 public class Dish implements RestaurantEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +22,16 @@ public class Dish implements RestaurantEntity {
 
     @NotNull
     @Size(max = 45)
+    @Column(name = "name")
     private String name;
 
     @NotNull
+    @Column(name = "cost")
     private String cost;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Product> products;
 
+    @Column(name = "in_menu")
     private Boolean menu;
 }

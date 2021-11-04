@@ -2,7 +2,7 @@ package ru.restaurant.mappers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.restaurant.dao.Order;
+import ru.restaurant.db.dao.Order;
 import ru.restaurant.dto.OrderDto;
 
 @Service

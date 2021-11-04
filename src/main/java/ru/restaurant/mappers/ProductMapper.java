@@ -1,7 +1,7 @@
 package ru.restaurant.mappers;
 
 import org.springframework.stereotype.Service;
-import ru.restaurant.dao.Product;
+import ru.restaurant.db.dao.Product;
 import ru.restaurant.dto.ProductDto;
 
 @Service

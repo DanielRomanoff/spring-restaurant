@@ -1,4 +1,4 @@
-package ru.restaurant.dao;
+package ru.restaurant.db.dao;
 
 public interface RestaurantEntity {
 }

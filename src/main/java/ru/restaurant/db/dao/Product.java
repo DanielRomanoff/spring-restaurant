@@ -1,20 +1,18 @@
-package ru.restaurant.dao;
+package ru.restaurant.db.dao;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "myschema", name = "products")
+@Getter
+@Setter
+@Table(schema = "restaurant", name = "products")
 public class Product implements RestaurantEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +21,9 @@ public class Product implements RestaurantEntity {
 
     @NotNull
     @Size(max = 45)
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "count")
     private Integer count;
 }

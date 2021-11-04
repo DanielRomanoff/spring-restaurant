@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.restaurant.dao.Product;
+import ru.restaurant.db.dao.Product;
 
 import java.util.List;
 

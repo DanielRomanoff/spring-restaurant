@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:6000/myschema?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:6000/restaurant?createDatabaseIfNotExist=true
     username: root
     password: 123
   jpa:

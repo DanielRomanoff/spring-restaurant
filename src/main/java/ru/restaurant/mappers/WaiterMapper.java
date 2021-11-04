@@ -1,7 +1,7 @@
 package ru.restaurant.mappers;
 
 import org.springframework.stereotype.Service;
-import ru.restaurant.dao.Waiter;
+import ru.restaurant.db.dao.Waiter;
 import ru.restaurant.dto.WaiterDto;
 
 @Service

@@ -3,7 +3,8 @@ package ru.restaurant.services;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.restaurant.dao.Order;
+import ru.restaurant.db.dao.Order;
+import ru.restaurant.db.repository.OrderRepository;
 import ru.restaurant.enums.Status;
 
 import java.util.List;
@@ -12,20 +13,23 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OrderService {
+    private final OrderRepository orderRepository;
 
     public Order createOrder(Order order) {
-        return null;
+        return orderRepository.save(order);
     }
 
     public List<Order> getOrders() {
-        return null;
+        return orderRepository.findAll();
     }
 
     public Double getAmount() {
-        return null;
+        return orderRepository.findAll().stream()
+                .mapToDouble(Order::getAmount)
+                .sum();
     }
 
-    public Order changeStatus(Status status) {
-        return null;
+    public void changeStatus(Integer id, Status status) {
+        orderRepository.findById(id).ifPresent(order -> order.setStatus(status));
     }
 }

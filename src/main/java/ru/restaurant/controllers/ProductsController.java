@@ -1,8 +1,16 @@
 package ru.restaurant.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import ru.restaurant.db.dao.Dish;
+import ru.restaurant.db.dao.Product;
 import ru.restaurant.dto.ProductDto;
 import ru.restaurant.mappers.ProductMapper;
 import ru.restaurant.services.ProductService;
@@ -21,23 +29,22 @@ public class ProductsController {
     private final ProductService productService;
     private final ProductMapper mapper;
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Получить все существующие продукты")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успешно", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Product.class)))) })
+    @RequestMapping(produces = APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public List<ProductDto> products() {
         log.info("Get products");
         return mapper.mapToDto(productService.getProducts());
     }
 
-    @RequestMapping("/create")
-    @PostMapping(produces = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Создать новый продукт")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Блюдо создано", content = @Content(schema = @Schema(implementation = Product.class))),
+            @ApiResponse(responseCode = "409", description = "Блюдо уже существует", content = @Content(schema = @Schema(implementation = String.class))) })
+    @RequestMapping(value = "/create", produces = APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public ProductDto createProduct(@Valid @RequestBody ProductDto product) {
         log.info("Create product - {}", product);
         return mapper.mapToDto(productService.createProduct(mapper.mapToEntity(product)));
-    }
-
-    @RequestMapping("/add")
-    @PostMapping(produces = APPLICATION_JSON_VALUE)
-    public ProductDto addProductCount(ProductDto productDto, Integer count) {
-        log.info("Add product {}, to count = {}", productDto, count);
-        return mapper.mapToDto(productService.addProductCount(mapper.mapToEntity(productDto), count));
     }
 }

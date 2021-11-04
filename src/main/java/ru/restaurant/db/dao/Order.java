@@ -1,20 +1,19 @@
-package ru.restaurant.dao;
+package ru.restaurant.db.dao;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import ru.restaurant.enums.Status;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "myschema", name = "order")
+@Getter
+@Setter
+@Table(schema = "restaurant", name = "orders")
 public class Order implements RestaurantEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +24,13 @@ public class Order implements RestaurantEntity{
     private List<Dish> dish;     // Список блюд
 
     @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "waiter_id")
+    @JsonIgnore
     private Waiter waiter; // Официант
 
+    @Column(name = "amount")
     private Double amount;       // Сумма
 
+    @Column(name = "status")
     private Status status;       // Статус заказа
 }

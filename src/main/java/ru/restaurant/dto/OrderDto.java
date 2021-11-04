@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.restaurant.dao.Dish;
+import ru.restaurant.db.dao.Dish;
 import ru.restaurant.enums.Status;
 
 import java.util.List;

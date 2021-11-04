@@ -1,6 +1,6 @@
 package ru.restaurant.mappers;
 
-import ru.restaurant.dao.RestaurantEntity;
+import ru.restaurant.db.dao.RestaurantEntity;
 import ru.restaurant.dto.Dto;
 
 import java.util.List;
