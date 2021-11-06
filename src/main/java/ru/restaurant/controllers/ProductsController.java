@@ -8,9 +8,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-import ru.restaurant.db.dao.Dish;
-import ru.restaurant.db.dao.Product;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import ru.restaurant.dto.ProductDto;
 import ru.restaurant.mappers.ProductMapper;
 import ru.restaurant.services.ProductService;
@@ -31,20 +33,20 @@ public class ProductsController {
 
     @Operation(summary = "Получить все существующие продукты")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Успешно", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Product.class)))) })
+            @ApiResponse(responseCode = "200", description = "Успешно", content = @Content(array = @ArraySchema(schema = @Schema(implementation = ProductDto.class))))})
     @RequestMapping(produces = APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public List<ProductDto> products() {
+    public ResponseEntity<List<ProductDto>> products() {
         log.info("Get products");
-        return mapper.mapToDto(productService.getProducts());
+        return ResponseEntity.ok(mapper.mapToDto(productService.getProducts()));
     }
 
     @Operation(summary = "Создать новый продукт")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Блюдо создано", content = @Content(schema = @Schema(implementation = Product.class))),
-            @ApiResponse(responseCode = "409", description = "Блюдо уже существует", content = @Content(schema = @Schema(implementation = String.class))) })
+            @ApiResponse(responseCode = "201", description = "Блюдо создано", content = @Content(schema = @Schema(implementation = ProductDto.class))),
+            @ApiResponse(responseCode = "409", description = "Блюдо уже существует", content = @Content(schema = @Schema(implementation = String.class)))})
     @RequestMapping(value = "/create", produces = APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-    public ProductDto createProduct(@Valid @RequestBody ProductDto product) {
+    public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto product) {
         log.info("Create product - {}", product);
-        return mapper.mapToDto(productService.createProduct(mapper.mapToEntity(product)));
+        return ResponseEntity.ok(mapper.mapToDto(productService.createProduct(mapper.mapToEntity(product))));
     }
 }

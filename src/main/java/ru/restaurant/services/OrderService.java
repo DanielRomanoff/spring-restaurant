@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.restaurant.db.dao.Order;
 import ru.restaurant.db.repository.OrderRepository;
-import ru.restaurant.enums.Status;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class OrderService {
                 .sum();
     }
 
-    public void changeStatus(Integer id, Status status) {
-        orderRepository.findById(id).ifPresent(order -> order.setStatus(status));
+    public void changeOrderStatus(Order order) {
+        orderRepository.save(order);
     }
 }

@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.restaurant.db.dao.Dish;
-import ru.restaurant.enums.Status;
 
 import java.util.List;
 
@@ -16,8 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderDto implements Dto {
     private Integer id;
-    private List<Dish> dish;     // Список блюд
-    private WaiterDto waiterDto; // Официант
+    private List<DishDto> dish;     // Список блюд
+    private WaiterDto waiter; // Официант
     private Double amount;       // Сумма
-    private Status status;       // Статус заказа
 }

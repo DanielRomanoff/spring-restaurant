@@ -1,11 +1,15 @@
 package ru.restaurant.mappers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.restaurant.db.dao.Dish;
 import ru.restaurant.dto.DishDto;
 
 @Service
-public class DishMapper implements Mapper<DishDto, Dish>{
+@RequiredArgsConstructor
+public class DishMapper implements Mapper<DishDto, Dish> {
+
+    private final ProductMapper mapper;
 
     @Override
     public DishDto mapToDto(Dish entity) {
@@ -14,7 +18,7 @@ public class DishMapper implements Mapper<DishDto, Dish>{
                 .cost(entity.getCost())
                 .name(entity.getName())
                 .menu(entity.getMenu())
-                .products(entity.getProducts())
+                .products(mapper.mapToDto(entity.getProducts()))
                 .build();
     }
 
@@ -25,7 +29,7 @@ public class DishMapper implements Mapper<DishDto, Dish>{
                 .cost(dto.getCost())
                 .name(dto.getName())
                 .menu(dto.getMenu())
-                .products(dto.getProducts())
+                .products(mapper.mapToEntity(dto.getProducts()))
                 .build();
     }
 }

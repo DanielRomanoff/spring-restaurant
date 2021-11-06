@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.restaurant.db.dao.Product;
 
 import java.util.List;
 
@@ -17,6 +16,6 @@ public class DishDto implements Dto{
     private Integer id;
     private String name;
     private String cost;
-    private List<Product> products; // Список продуктов для блюда
+    private List<ProductDto> products; // Список продуктов для блюда
     private Boolean menu; // В меню ли блюдо
 }
