@@ -29,12 +29,7 @@ public class Dish implements RestaurantEntity {
     @Column(name = "cost")
     private String cost;
 
-    @ManyToMany(cascade = {CascadeType.MERGE})
-    @JoinTable(
-            name = "dishes_products",
-            joinColumns = @JoinColumn(name = "dishes_id"),
-            inverseJoinColumns = @JoinColumn(name = "products_id")
-    )
+    @OneToMany
     private List<Product> products;
 
     @Column(name = "in_menu")

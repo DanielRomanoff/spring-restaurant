@@ -25,9 +25,6 @@ public class Product implements RestaurantEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "count")
-    private Integer count;
-
-    @ManyToMany(mappedBy = "products")
+    @OneToMany
     private List<Dish> dishes;
 }

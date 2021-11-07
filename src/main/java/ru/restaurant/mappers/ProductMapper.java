@@ -20,7 +20,7 @@ public class ProductMapper implements Mapper<ProductDto, Product> {
         return Product.builder()
                 .id(dto.getId())
                 .name(dto.getName())
-                .count(dto.getCount())
+//                .count(dto.getCount())
                 .build();
     }
 }
