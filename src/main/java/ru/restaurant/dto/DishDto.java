@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DishDto implements Dto{
+public class DishDto implements Dto {
     private Integer id;
     private String name;
     private String cost;

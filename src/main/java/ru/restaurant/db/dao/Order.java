@@ -23,6 +23,7 @@ public class Order implements RestaurantEntity{
     @OneToMany(fetch = FetchType.EAGER)
     private List<Dish> dish;     // Список блюд
 
+    // TODO : Сделать связь Users с ролью WAITER, а не просто waiter
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "waiter_id")
     @JsonIgnore

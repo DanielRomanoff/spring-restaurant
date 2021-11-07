@@ -16,7 +16,7 @@ public class DishService {
     private final DishRepository dishRepository;
 
     public Dish createDish(Dish dish) {
-        return dishRepository.save(dish); // TODO: Если создать блюдо с продуктом, который есть в другом блюде, будет ошибка
+        return dishRepository.save(dish);
     }
 
     public Dish updateDish(Dish dish) {
