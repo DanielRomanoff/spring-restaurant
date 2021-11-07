@@ -11,7 +11,6 @@ public class ProductMapper implements Mapper<ProductDto, Product> {
         return ProductDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
-//                .count(entity.getCount())
                 .build();
     }
 
@@ -20,7 +19,6 @@ public class ProductMapper implements Mapper<ProductDto, Product> {
         return Product.builder()
                 .id(dto.getId())
                 .name(dto.getName())
-//                .count(dto.getCount())
                 .build();
     }
 }

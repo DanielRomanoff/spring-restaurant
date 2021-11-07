@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Map;
 
 @Builder
 @AllArgsConstructor
@@ -34,4 +35,7 @@ public class Dish implements RestaurantEntity {
 
     @Column(name = "in_menu")
     private Boolean menu;
+
+    @Transient
+    private Map<Integer, Integer> productCountMap;
 }
