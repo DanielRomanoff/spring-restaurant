@@ -23,6 +23,6 @@ public class ProductService {
     }
 
     public void addProductCount(Integer id, Integer count) {
-        productRepository.findById(id).ifPresent(product -> product.setCount(product.getCount() + count));
+        //productRepository.findById(id).ifPresent(product -> product.setCount(product.getCount() + count));
     }
 }
