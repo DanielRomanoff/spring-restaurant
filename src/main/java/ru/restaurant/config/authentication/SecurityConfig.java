@@ -53,6 +53,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, login).permitAll()
                 .antMatchers(create).permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .antMatchers(
+                        "/v3/api-docs",
+                        "/v3/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/swagger-ui/**",
+                        "/v3/api-docs.yaml",
+                        "/v3/api-docs/swagger-config/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
