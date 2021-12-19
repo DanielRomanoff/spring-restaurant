@@ -1,11 +1,21 @@
 package ru.restaurant.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
-import org.springframework.web.bind.annotation.*;
-import ru.restaurant.db.Order;
-import ru.restaurant.db.Person;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import ru.restaurant.dto.OrderDto;
+import ru.restaurant.mappers.OrderMapper;
 import ru.restaurant.services.OrderService;
 
 import javax.validation.Valid;
@@ -20,28 +30,44 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class OrderController {
 
     private final OrderService orderService;
+    private final OrderMapper mapper;
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public List<Order> orders() {
+    @Operation(summary = "Получить все существующие заказы")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успешно", content = @Content(array = @ArraySchema(schema = @Schema(implementation = OrderDto.class))))})
+    @RequestMapping(produces = APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('WAITER')")
+    public ResponseEntity<List<OrderDto>> orders() {
         log.info("Get orders");
-        return orderService.getOrders();
+        return ResponseEntity.ok(mapper.mapToDto(orderService.getOrders()));
     }
 
-    @PostMapping(produces = APPLICATION_JSON_VALUE)
-    public Order createOrder(@Valid @RequestBody Order order) {
-        log.info("Create order = {}", order);
-        return orderService.createOrder(order);
+    @Operation(summary = "Создать новое блюдо")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Блюдо создано", content = @Content(schema = @Schema(implementation = OrderDto.class))),
+            @ApiResponse(responseCode = "409", description = "Блюдо уже существует", content = @Content(schema = @Schema(implementation = String.class)))})
+    @RequestMapping(value = "/create", produces = APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public ResponseEntity<OrderDto> createOrder(@Valid @RequestBody OrderDto orderDto) {
+        log.info("Create order = {}", orderDto);
+        return ResponseEntity.ok(mapper.mapToDto(orderService.createOrder(mapper.mapToEntity(orderDto))));
     }
 
-    @DeleteMapping(produces = APPLICATION_JSON_VALUE)
-    public void deleteOrder(@RequestBody Order order) {
-        log.info("Delete person = {}", order);
-        orderService.deleteOrder(order);
+    @Operation(summary = "Получить общую сумму выручки")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успешно", content = @Content(array = @ArraySchema(schema = @Schema(implementation = OrderDto.class))))})
+    @RequestMapping(value = "/amount", produces = APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public ResponseEntity<Double> getAmountByOrders() {
+        log.info("Get amount");
+        return ResponseEntity.ok(orderService.getAmount());
     }
 
-    @GetMapping("/cost")
-    public Integer totalCost(@RequestParam(name = "id") Integer id) {
-        log.info("Get total cost of order with id = " + id);
-        return orderService.getTotalCost(id);
+    @Operation(summary = "Обновить статус заказа")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успешно"),
+            @ApiResponse(responseCode = "404", description = "Заказ не найден")})
+    @RequestMapping(value = "/status", produces = APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public void changeOrderStatus(@RequestBody OrderDto orderDto) {
+        log.info("Change status = {}", orderDto);
+        orderService.changeOrderStatus(mapper.mapToEntity(orderDto));
     }
 }

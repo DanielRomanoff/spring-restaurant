@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:6000/myschema?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:6000/restaurant?createDatabaseIfNotExist=true
     username: root
     password: 123
   jpa:
@@ -21,3 +21,15 @@ spring:
 springdoc:
   swagger-ui:
     path: /swagger-ui-custom.html
+
+jwt:
+  token:
+    #секрет для токена, хранится на сервере
+    secret: jwtbiappdemo
+    #время жизни токена в миллисекундах
+    expired: 3600000
+
+web:
+  cors: http://localhost:3001
+  login: /auth/login
+  create: /auth/create
