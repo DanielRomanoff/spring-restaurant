@@ -1,6 +1,5 @@
 package ru.restaurant.db.dao;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import ru.restaurant.enums.Status;
 
@@ -22,12 +21,6 @@ public class Order implements RestaurantEntity{
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Dish> dish;     // Список блюд
-
-    // TODO : Сделать связь Users с ролью WAITER, а не просто waiter
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "waiter_id")
-    @JsonIgnore
-    private Waiter waiter; // Официант
 
     @Column(name = "amount")
     private Double amount;       // Сумма

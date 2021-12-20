@@ -10,7 +10,6 @@ import ru.restaurant.enums.Status;
 @AllArgsConstructor
 public class OrderMapper implements Mapper<OrderDto, Order> {
 
-    private final WaiterMapper waiterMapper;
     private final DishMapper dishMapper;
 
     @Override
@@ -19,7 +18,6 @@ public class OrderMapper implements Mapper<OrderDto, Order> {
                 .id(entity.getId())
                 .amount(entity.getAmount())
                 .dish(dishMapper.mapToDto(entity.getDish()))
-                .waiter(waiterMapper.mapToDto(entity.getWaiter()))
                 .build();
     }
 
@@ -29,7 +27,6 @@ public class OrderMapper implements Mapper<OrderDto, Order> {
                 .id(dto.getId())
                 .amount(dto.getAmount())
                 .dish(dishMapper.mapToEntity(dto.getDish()))
-                .waiter(waiterMapper.mapToEntity(dto.getWaiter()))
                 .status(Status.CREATED)
                 .build();
     }
