@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -25,6 +24,4 @@ public class Product implements RestaurantEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany
-    private List<Dish> dishes;
 }
