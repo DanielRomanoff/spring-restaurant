@@ -15,6 +15,5 @@ import java.util.List;
 public class OrderDto implements Dto {
     private Integer id;
     private List<DishDto> dish;     // Список блюд
-    private WaiterDto waiter; // Официант
     private Double amount;       // Сумма
 }
