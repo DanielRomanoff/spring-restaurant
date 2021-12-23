@@ -20,5 +20,3 @@ public class Role implements RestaurantEntity {
     @Column(name = "name")
     private String name;
 }
-
-//eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYmxpdmlvbmJ1biIsInJvbGVzIjpbIkFETUlOIl0sImlhdCI6MTYzNjMwNzgwMCwiZXhwIjoxNjM2MzExNDAwfQ.BvkiNJEQtdA3QkmM0qo59-tOi-j4BpyHejpi206yYdI

@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +35,6 @@ public class OrderController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Успешно", content = @Content(array = @ArraySchema(schema = @Schema(implementation = OrderDto.class))))})
     @RequestMapping(produces = APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('WAITER')")
     public ResponseEntity<List<OrderDto>> orders() {
         log.info("Get orders");
         return ResponseEntity.ok(mapper.mapToDto(orderService.getOrders()));

@@ -27,7 +27,7 @@ jwt:
     #секрет для токена, хранится на сервере
     secret: jwtbiappdemo
     #время жизни токена в миллисекундах
-    expired: 3600000
+    expired: 3600000000
 
 web:
   cors: http://localhost:3001
